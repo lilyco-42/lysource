@@ -216,8 +216,8 @@ async def lifespan(_app: FastAPI):
     sched = BackgroundScheduler(daemon=True)
     sched.add_job(run_due_sources, "interval", seconds=60, id="heartbeat",
                   max_instances=1, coalesce=True)
+    sched.add_job(run_due_sources, "date")  # 首抓异步执行，不阻塞服务启动
     sched.start()
-    run_due_sources()  # 启动立即抓一轮到期源
     print(f"[lysource] started, seeded {seeded} new source(s), db={DB_PATH}")
     yield
     sched.shutdown(wait=False)
