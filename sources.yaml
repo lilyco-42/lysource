@@ -1,0 +1,39 @@
+# lysource 种子信息源（启动时合并进 DB，之后可在 DB/API 层自由增删）
+# type: rss  —— 标准 RSS/Atom 源
+# type: html —— 自定义 CSS 选择器源: {item: 条目, title: 标题, link: 链接}
+# trust: 可信度 0~1（参与评分）  interval: 抓取间隔（分钟）
+
+sources:
+  - name: solidot
+    url: https://www.solidot.org/index.rss
+    type: rss
+    trust: 0.85
+    interval: 30
+
+  - name: v2ex-hot
+    url: https://www.v2ex.com/index.xml
+    type: rss
+    trust: 0.7
+    interval: 20
+
+  - name: github-blog
+    url: https://github.blog/feed/
+    type: rss
+    trust: 0.95
+    interval: 60
+
+  - name: hackernews
+    url: https://news.ycombinator.com/
+    type: html
+    trust: 0.9
+    interval: 15
+    selector:
+      item: "span.titleline"
+      title: "a"
+      link: "a"
+
+  - name: 36kr-newsflash
+    url: https://36kr.com/feed
+    type: rss
+    trust: 0.75
+    interval: 20

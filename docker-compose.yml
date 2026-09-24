@@ -1,0 +1,12 @@
+services:
+  lysource:
+    build: .
+    container_name: lysource
+    restart: always
+    ports:
+      - "127.0.0.1:8790:8790"   # 只监听本机，由 pingap/Nginx 反代对外
+    environment:
+      - LYSOURCE_TOKEN=${LYSOURCE_TOKEN:-}
+      - TZ=Asia/Shanghai
+    volumes:
+      - ./data:/app/data
